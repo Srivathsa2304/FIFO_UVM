@@ -21,3 +21,15 @@ bit [127:0] o_rddata;
   `uvm_object_utils_end
 
 constraint c1{soft i_wren!=i_rden;}
+  
+  // function void pre_randomize();
+  //   if(i_rden)
+  //     data_in.rand_mode(0);
+  // endfunction
+
+  function new(string name="fifo_sequence_items");
+    super.new(name);
+  endfunction
+
+endclass
+  
