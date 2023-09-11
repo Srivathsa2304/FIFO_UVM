@@ -20,7 +20,7 @@ bit [127:0] o_rddata;
   `uvm_field_int(o_rddata, UVM_ALL_ON)
   `uvm_object_utils_end
 
-constraint c1{soft i_wren!=i_rden;}
+  constraint c1{{i_wren,i_rden} inside {00,01,10,11};}
   
   // function void pre_randomize();
   //   if(i_rden)
