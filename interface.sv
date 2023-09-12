@@ -34,3 +34,8 @@ clocking passive_monitor_cb @(posedge clk);
     input o_alm_empty;
     input o_rddata;
   endclocking
+
+  modport driver_mp (input clk, reset, clocking driver_cb);
+  modport act_monitor_mp (input clk, reset, clocking active_monitor_cb);
+  modport act_monitor_mp (input clk, reset, clocking passive_monitor_cb);
+    
