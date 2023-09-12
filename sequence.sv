@@ -24,6 +24,8 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         assert(req.randomize() with {i_wren == 0;i_rden == 1;});
         finish_item(req);
       end
+  endtask
+  endclass
 
     `uvm_info(get_type_name(), $sformatf("**Idle condition**"), UVM_LOW)
     repeat(1024)
