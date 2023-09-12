@@ -9,7 +9,6 @@ class fifo_monitor extends uvm_monitor;
     item_got_port = new("item_got_port", this);
   endfunction
   
-
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     item_got = fifo_sequence_item::type_id::create("item_got");
