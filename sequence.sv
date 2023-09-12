@@ -24,7 +24,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         assert(req.randomize() with {i_wren == 0;i_rden == 1;});
         finish_item(req);
       end
-
+   //IDLE condition, both write and read enables are 0
     `uvm_info(get_type_name(), $sformatf("**Idle condition**"), UVM_LOW)
     repeat(1024)
       begin
@@ -34,6 +34,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         finish_item(req);
       end
 
+    // Parallel write and read 
     `uvm_info(get_type_name(), $sformatf("**Parallel write and read**"), UVM_LOW)
     repeat(1024)
       begin
