@@ -15,10 +15,19 @@ class fifo_driver extends uvm_driver #(fifo_sequence_items);
   endfunction
 
   virtual task run_phase(uvm_phase phase);
-    vif.driver_mp.driver_cb.i_wren <= 'b0;
-    vif.driver_mp.driver_cb.i_rden <= 'b0;
-    vif.driver_mp.driver_cb.i_wrdata <= 'b0;
+
     forever begin
+      if(vif.rstn)
+        begin
+              vif.driver_mp.driver_cb.i_wren <= 'b0;
+              vif.driver_mp.driver_cb.i_rden <= 'b0;
+              vif.driver_mp.driver_cb.i_wrdata <= 'b0;
+          // vif.driver_mp.driver_cb.o_full <= 'b0;
+          // vif.driver_mp.driver_cb.o_alm_full <= 'b0;
+          // vif.driver_mp.driver_cb.o_empty <= 'b0;
+          // vif.driver_mp.driver_cb.o_alm_empty <= 'b0;
+          // vif.driver_mp.driver_cb.o_rddata <= 'b0;
+        end
       seq_item_port.get_next_item(req);
       if(req.i_wren == 1)
         begin
