@@ -42,6 +42,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         assert(req.randomize() with {i_wren == 1;i_rden == 1;});
         finish_item(req);
       end
+    
   endtask
 endclass
       
