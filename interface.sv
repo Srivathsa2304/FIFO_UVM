@@ -37,5 +37,5 @@ clocking passive_monitor_cb @(posedge clk);
 
   modport driver_mp (input clk, reset, clocking driver_cb);
   modport act_monitor_mp (input clk, reset, clocking active_monitor_cb);
-  modport act_monitor_mp (input clk, reset, clocking passive_monitor_cb);
+  modport pas_monitor_mp (input clk, reset, clocking passive_monitor_cb);
 endinterface
