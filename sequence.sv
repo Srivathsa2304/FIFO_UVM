@@ -43,6 +43,20 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         assert(req.randomize() with {i_wren == 1;i_rden == 1;});
         finish_item(req);
       end
+    //Alternate write and read
+    `uvm_info(get_type_name(), $sformatf("**Alternate write and read**"), UVM_LOW)
+    repeat(1024)
+      begin
+         req = fifo_sequence_items::type_id::create("req");
+        start_item(req);
+        assert(req.randomize() with {i_wren == 1;i_rden == 0;});
+        finish_item(req);
+        
+         req = fifo_sequence_items::type_id::create("req");
+        start_item(req);
+       assert(req.randomize() with {i_wren == 0;i_rden == 1;});
+        finish_item(req);
+      end
     
   endtask
 endclass
