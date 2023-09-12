@@ -1,4 +1,4 @@
-interface fifo_interface(input clk, reset);
+interface fifo_interface(input clk, rstn);
   bit i_wren;
   bit i_rden;
   bit [127:0] i_wrdata;
@@ -35,7 +35,7 @@ clocking passive_monitor_cb @(posedge clk);
     input o_rddata;
   endclocking
 
-  modport driver_mp (input clk, reset, clocking driver_cb);
-  modport act_monitor_mp (input clk, reset, clocking active_monitor_cb);
-  modport pas_monitor_mp (input clk, reset, clocking passive_monitor_cb);
+  modport driver_mp (input clk, rstn, clocking driver_cb);
+    modport act_monitor_mp (input clk, rstn, clocking active_monitor_cb);
+      modport pas_monitor_mp (input clk, rstn, clocking passive_monitor_cb);
 endinterface
