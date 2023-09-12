@@ -20,11 +20,14 @@ interface fifo_interface(input clk, reset);
     input o_rddata;
   endclocking
 
-  clocking monitor_cb @(posedge clk);
+  clocking active_monitor_cb @(posedge clk);
     default input #0 output #0;
     input i_wren;
     input i_rden;
     input i_wrdata;
+  endclocking
+  
+clocking passive_monitor_cb @(posedge clk);
     input o_full;
     input o_empty;
     input o_alm_full;
