@@ -17,7 +17,7 @@ class fifo_driver extends uvm_driver #(fifo_sequence_items);
   virtual task run_phase(uvm_phase phase);
 
     forever begin
-      if(vif.rstn)
+      if(vif.driver_cb.rstn)
         begin
               vif.driver_mp.driver_cb.i_wren <= 'b0;
               vif.driver_mp.driver_cb.i_rden <= 'b0;
