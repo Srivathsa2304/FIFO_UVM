@@ -19,8 +19,8 @@ class fifo_environment extends uvm_env;
   endfunction
   
   virtual function void connect_phase(uvm_phase phase);
-    f_agt1.fifo_monitor1.item_got_port1.connect(f_scb.item_got_export);
-    f_agt2.fifo_monitor2.item_got_port2.connect(f_scb.item_got_export);
+    f_agt1.fifo_monitor1.item_got_port1.connect(f_scb.item_got_export1);
+    f_agt2.fifo_monitor2.item_got_port2.connect(f_scb.item_got_export2);
   endfunction
   
 endclass
