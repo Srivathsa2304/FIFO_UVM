@@ -30,7 +30,7 @@ class fifo_monitor extends uvm_monitor;
       else if(vif.monitor_mp.monitor_cb.i_rden == 1)begin
         @(posedge vif.monitor_mp.clk)
         $display("\n Read is high");
-        item_got.i_rddata = vif.monitor_mp.monitor_cb.i_rddata;
+       // item_got.i_rddata = vif.monitor_mp.monitor_cb.i_rddata;
         item_got.i_rden = 'b1;
         item_got.i_wren = 'b0;
         //item_got.empty = vif.m_mp.m_cb.empty;
