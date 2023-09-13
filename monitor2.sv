@@ -19,6 +19,11 @@ class fifo_monitor2 extends uvm_monitor;
   virtual task run_phase(uvm_phase phase);
     forever begin
       @(posedge vif.pas_monitor_mp.clk)
+      item_got2.o_full = vif.pas_monitor_mp.passive_monitor_cb.o_full;
+      item_got2.o_empty = vif.pas_monitor_mp.passive_monitor_cb.o_empty;
+      item_got2.o_alm_full = vif.pas_monitor_mp.passive_monitor_cb.o_alm_full;
+      item_got2.o_alm_empty = vif.pas_monitor_mp.passive_monitor_cb.o_alm_empty;
+      item_got2.o_rddata = vif.pas_monitor_mp.passive_monitor_cb.o_rddata;
       item_got_port2.write(item_got2);
     end
   endtask
