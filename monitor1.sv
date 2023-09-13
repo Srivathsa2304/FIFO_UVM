@@ -20,21 +20,21 @@ class fifo_monitor extends uvm_monitor;
     forever begin
       @(posedge vif.monitor_mp.clk)
       if(vif.monitor_mp.monitor_cb.i_wren == 1)begin
-        $display("\nWR is high");
+        $display("\n Write is high");
         item_got.i_wren = vif.monitor_mp.monitor_cb.i_wren;
         item_got.i_wren = 'b1;
         item_got.i_rden = 'b0;
-        item_got.full = vif.monitor_mp.monitor_cb.full;
+        //item_got.full = vif.monitor_mp.monitor_cb.full;
         item_got_port.write(item_got);
       end
       else if(vif.monitor_mp.monitor_cb.i_rden == 1)begin
         @(posedge vif.monitor_mp.clk)
-        $display("\nRD is high");
-        item_got.i_rddata = vif.m_mp.m_cb.data_out;
-        item_got.rd = 'b1;
-        item_got.wr = 'b0;
-        item_got.empty = vif.m_mp.m_cb.empty;
-        item_got_port.write(item_got);
+        $display("\n Read is high");
+        item_got.i_rddata = vif.monitor_mp.monitor_cb.i_rddata;
+        item_got.i_rden = 'b1;
+        item_got.i_wren = 'b0;
+        //item_got.empty = vif.m_mp.m_cb.empty;
+        //item_got_port.write(item_got);
       end
     end
   endtask
