@@ -1,11 +1,12 @@
 class fifo_scoreboard extends uvm_scoreboard;
   uvm_analysis_imp#(fifo_sequence_items, fifo_scoreboard) item_got_export1;
   uvm_analysis_imp#(fifo_sequence_items, fifo_scoreboard) item_got_export2;
-  `uvm_component_utils(f_scoreboard)
+  `uvm_component_utils(fifo_scoreboard)
   
-  function new(string name = "f_scoreboard", uvm_component parent);
+  function new(string name = "fifo_scoreboard", uvm_component parent);
     super.new(name, parent);
-    item_got_export = new("item_got_export", this);
+    item_got_export1 = new("item_got_export1", this);
+    item_got_export2 = new("item_got_export2", this);
   endfunction
   
   virtual function void build_phase(uvm_phase phase);
@@ -14,7 +15,7 @@ class fifo_scoreboard extends uvm_scoreboard;
   
   int queue[$];
   
-  function void write(input f_sequence_item item_got);
+  function void write(input fifo_sequence_items item_got);
     bit [7:0] examdata;
     if(item_got.wr == 'b1)begin
       queue.push_back(item_got.data_in);
