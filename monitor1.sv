@@ -18,44 +18,44 @@ class fifo_monitor extends uvm_monitor;
       
   virtual task run_phase(uvm_phase phase);
     forever begin
-      @(posedge vif.monitor_mp.clk)
-      if(vif.monitor_mp.monitor_cb.i_wren == 0 && vif.monitor_mp.monitor_cb.i_rden == 0)begin
+      @(posedge vif.act_monitor_mp.clk)
+      if(vif.act_monitor_mp.active_monitor_cb.i_wren == 0 && vif.act_monitor_mp.active_monitor_cb.i_rden == 0)begin
         $display("\n Write is low and read is low");
-        //item_got1.i_wrdata = vif.monitor_mp.monitor_cb.i_wrdata;
+        //item_got1.i_wrdata = vif.act_monitor_mp.active_monitor_cb.i_wrdata;
         item_got1.i_wren = 'b0;
         item_got1.i_rden = 'b0;
-        //item_got1.full = vif.monitor_mp.monitor_cb.full;
+        //item_got1.full = vif.act_monitor_mp.active_monitor_cb.full;
         item_got_port1.write(item_got1);
       end
-      else if(vif.monitor_mp.monitor_cb.i_wren == 0 && vif.monitor_mp.monitor_cb.i_rden == 1)begin
-        @(posedge vif.monitor_mp.clk)
+      else if(vif.act_monitor_mp.active_monitor_cb.i_wren == 0 && vif.act_monitor_mp.active_monitor_cb.i_rden == 1)begin
+        @(posedge vif.act_monitor_mp.clk)
         $display("\n Read is high");
-       // item_got1.i_rddata = vif.monitor_mp.monitor_cb.i_rddata;
+       // item_got1.i_rddata = vif.act_monitor_mp.active_monitor_cb.i_rddata;
         item_got1.i_wren = 'b0;
         item_got1.i_rden = 'b1;
-        //item_got1.empty = vif.monitor_mp.monitor_cb.empty;
+        //item_got1.empty = vif.act_monitor_mp.active_monitor_cb.empty;
         item_got_port1.write(item_got1);
       end
 
-      else if(vif.monitor_mp.monitor_cb.i_wren == 1 && vif.monitor_mp.monitor_cb.i_rden == 0)begin
-        @(posedge vif.monitor_mp.clk)
+      else if(vif.act_monitor_mp.active_monitor_cb.i_wren == 1 && vif.act_monitor_mp.active_monitor_cb.i_rden == 0)begin
+        @(posedge vif.act_monitor_mp.clk)
         $display("\n Read is high");
-       // item_got1.i_rddata = vif.monitor_mp.monitor_cb.i_rddata;
+       // item_got1.i_rddata = vif.act_monitor_mp.active_monitor_cb.i_rddata;
         item_got1.i_wren = 'b1;
         item_got1.i_rden = 'b0;
-        item_got1.i_wrdata = vif.monitor_mp.monitor_cb.i_wrdata;
-        //item_got1.empty = vif.m_mp.m_cb.empty;
+        item_got1.i_wrdata = vif.act_monitor_mp.active_monitor_cb.i_wrdata;
+        //item_got1.empty = vif.act_monitor_mp.active_monitor_cb.empty;
         item_got_port1.write(item_got1);
       end
 
-      else if(vif.monitor_mp.monitor_cb.i_wren == 1 && vif.monitor_mp.monitor_cb.i_rden == 1)begin
-        @(posedge vif.monitor_mp.clk)
+      else if(vif.act_monitor_mp.active_monitor_cb.i_wren == 1 && vif.act_monitor_mp.active_monitor_cb.i_rden == 1)begin
+        @(posedge vif.act_monitor_mp.clk)
         $display("\n Read is high");
-       // item_got1.i_rddata = vif.monitor_mp.monitor_cb.i_rddata;
+       // item_got1.i_rddata = vif.act_monitor_mp.active_monitor_cb.i_rddata;
         item_got1.i_wren = 'b1;
         item_got1.i_rden = 'b1; 
-        item_got1.i_wrdata = vif.monitor_mp.monitor_cb.i_wrdata;
-        //item_got1.empty = vif.m_mp.m_cb.empty;
+        item_got1.i_wrdata = vif.act_monitor_mp.active_monitor_cb.i_wrdata;
+        //item_got1.empty = vif.act_monitor_mp.active_monitor_cb.empty;
         item_got_port1.write(item_got1);
       end
     end
