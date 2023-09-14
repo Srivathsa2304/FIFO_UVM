@@ -25,6 +25,14 @@ class fifo_scoreboard extends uvm_scoreboard;
             `uvm_info("Data write operation", $sformatf("i_wren: %0b i_rden: %0b i_wrdata: %0d o_full: %0b o_alm_full: %0b",item_got1.i_wren, item_got1.i_rden,item_got1.i_wrdata, item_got2.o_full,item_got2.o_alm_full), UVM_LOW);
           end
       end
+
+    if (item_got1.i_rden == 'b1)begin
+      if(queue.size() >= 'd1)
+        begin
+         data = queue.pop_front();
+        `uvm_info("Data read operation", $sformatf("data: %0d o_rddata: %0d o_empty: %0b o_alm_empty: %0b", data, item_got2.o_rddata, item_got2.o_empty item_got2.o_alm_empty), UVM_LOW);
+      end
+    end
   
   
 endclass
