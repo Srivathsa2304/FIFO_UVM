@@ -16,7 +16,7 @@ class fifo_scoreboard extends uvm_scoreboard;
   int queue[$];
 
   function void write(input fifo_sequence_items item_got1);
-    bit [7:0] data;
+    bit [127:0] data;
     if(item_got1.i_wren=='b1)
       begin
         if(queue.size()<1024)
