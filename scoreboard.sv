@@ -26,13 +26,16 @@ class fifo_scoreboard extends uvm_scoreboard;
           end
       end
 
-    if (item_got1.i_rden == 'b1)begin
+    if (item_got1.i_rden == 'b1)
+      begin
       if(queue.size() >= 'd1)
         begin
          data = queue.pop_front();
         `uvm_info("Data read operation", $sformatf("data: %0d o_rddata: %0d o_empty: %0b o_alm_empty: %0b", data, item_got2.o_rddata, item_got2.o_empty item_got2.o_alm_empty), UVM_LOW);
+        end
+      if(data == item_got1.o_rddata)
+        begin
+        $display("-----------Pass!-----------");
+        end
       end
-    end
-  
-  
 endclass
