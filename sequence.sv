@@ -7,7 +7,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
 
   virtual task body();
     //continuous writes
-    `uvm_info(get_type_name(), $sformatf("** Generate 1024 Write transactions**"), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("** Generate 1024 Write transactions**"), UVM_LOW);
     repeat(1024)
       begin
          req = fifo_sequence_items::type_id::create("req");
@@ -16,7 +16,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         finish_item(req);
       end
     //continuous reads
-    `uvm_info(get_type_name(), $sformatf("** Generate 1024 read transactions**"), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("** Generate 1024 read transactions**"), UVM_LOW);
     repeat(1024)
       begin
          req = fifo_sequence_items::type_id::create("req");
@@ -25,7 +25,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
         finish_item(req);
       end
    //IDLE condition, both write and read enables are 0
-    `uvm_info(get_type_name(), $sformatf("**Idle condition**"), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("**Idle condition**"), UVM_LOW);
     repeat(1024)
       begin
          req = fifo_sequence_items::type_id::create("req");
@@ -35,7 +35,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
       end
 
     // Parallel write and read 
-    `uvm_info(get_type_name(), $sformatf("**Parallel write and read**"), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("**Parallel write and read**"), UVM_LOW);
     repeat(1024)
       begin
          req = fifo_sequence_items::type_id::create("req");
@@ -45,7 +45,7 @@ class fifo_sequence extends uvm_sequence #(fifo_sequence_items);
       end
     
     //Alternate write and read
-    `uvm_info(get_type_name(), $sformatf("**Alternate write and read**"), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("**Alternate write and read**"), UVM_LOW);
     repeat(1024)
       begin
          req = fifo_sequence_items::type_id::create("req");
