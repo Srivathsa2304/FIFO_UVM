@@ -22,8 +22,9 @@ class fifo_scoreboard extends uvm_scoreboard;
         if(queue.size()<1024)
           begin
             queue.push_back(item_got1.i_wren);
-             `uvm_info("write Data", $sformatf("wr: %0b rd: %0b data_in: %0h full: %0b",item_got.wr, item_got.rd,item_got.data_in, item_got.full), UVM_LOW);
-        
+            `uvm_info("Data write operation", $sformatf("i_wren: %0b i_rden: %0b i_wrdata: %0d o_full: %0b o_alm_full: %0b",item_got1.i_wren, item_got1.i_rden,item_got1.i_wrdata, item_got2.o_full,item_got2.o_alm_full), UVM_LOW);
+          end
+      end
   
   
 endclass
