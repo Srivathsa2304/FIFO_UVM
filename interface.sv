@@ -7,7 +7,7 @@ interface fifo_interface(input clk, rstn);
   bit o_empty;
   bit o_alm_empty;
   bit [127:0] o_rddata;
-
+  
   clocking driver_cb @(posedge clk);
     default input #0 output #0;
     output i_wren;
