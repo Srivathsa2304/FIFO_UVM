@@ -11,12 +11,12 @@ module tb;
   
   initial begin
     clk = 1;
-    reset = 1;
+    rstn = 1;
     #5;
-    reset = 0;
+    rstn= 0;
   end
   
-  fifo_interface tif(clk, reset);
+  fifo_interface tif(clk, rstn);
   
   SYN_FIFO dut(.clk(tif.clk),
                .rstn(tif.rstn),
@@ -24,11 +24,12 @@ module tb;
                .i_wren(tif.i_wren),
                .i_rden(tif.i_rden),
                .o_full(tif.o_full),
-               .empty(tif.empty),
-               .data_out(tif.data_out));
-  
+               .o_empty(tif.o_empty),
+               .o_alm_empty(tif.o_alm_empty),
+               .o_alm_full(tif.o_alm_full),
+               .o_rddata(tif.o_rddata) );
   initial begin
-    uvm_config_db#(virtual f_interface)::set(null, "", "vif", tif);
+    uvm_config_db#(virtual fifo_interface)::set(null, "", "vif", tif);
     $dumpfile("dump.vcd"); 
     $dumpvars;
     run_test("fifo_test");
