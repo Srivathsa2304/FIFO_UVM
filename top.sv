@@ -1,1 +1,37 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+`include "fifo_interface.sv"
+`include "fifo_test.sv"
 
+module tb;
+  bit clk;
+  bit rstn;
+  
+  always #5 clk = ~clk;
+  
+  initial begin
+    clk = 1;
+    reset = 1;
+    #5;
+    reset = 0;
+  end
+  
+  fifo_interface tif(clk, reset);
+  
+  SYN_FIFO dut(.clk(tif.clk),
+               .rstn(tif.rstn),
+               .i_wrdata(tif.i_wrdata),
+               .i_wren(tif.i_wren),
+               .i_rden(tif.i_rden),
+               .o_full(tif.o_full),
+               .empty(tif.empty),
+               .data_out(tif.data_out));
+  
+  initial begin
+    uvm_config_db#(virtual f_interface)::set(null, "", "vif", tif);
+    $dumpfile("dump.vcd"); 
+    $dumpvars;
+    run_test("fifo_test");
+  end
+  
+endmodule
