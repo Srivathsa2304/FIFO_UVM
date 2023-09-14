@@ -13,7 +13,7 @@ class fifo_scoreboard extends uvm_scoreboard;
     super.build_phase(phase);
   endfunction
 
-  int queue[$];
+  bit[127:0] queue[$];
   bit [127:0] local_var;
 
   function void write1(input fifo_sequence_items item_got1);
