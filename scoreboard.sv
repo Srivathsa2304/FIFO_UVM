@@ -32,10 +32,10 @@ class fifo_scoreboard extends uvm_scoreboard;
         begin
          data = queue.pop_front();
         `uvm_info("Data read operation", $sformatf("data: %0d o_rddata: %0d o_empty: %0b o_alm_empty: %0b", data, item_got2.o_rddata, item_got2.o_empty item_got2.o_alm_empty), UVM_LOW);
-        end
-      if(data == item_got1.o_rddata)
-        begin
+          if(data == item_got2.o_rddata)
         $display("-----------Pass!-----------");
+          else
+        $display("-----------Fail!-----------");
         end
       end
 endclass
