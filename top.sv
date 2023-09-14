@@ -1,7 +1,7 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "fifo_interface.sv"
-`include "fifo_test.sv"
+`include "interface.sv"
+`include "test.sv"
 
 module tb;
   bit clk;
