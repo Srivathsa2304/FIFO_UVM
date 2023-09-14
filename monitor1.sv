@@ -13,7 +13,7 @@ class fifo_monitor1 extends uvm_monitor;
     super.build_phase(phase);
     item_got1 = fifo_sequence_items::type_id::create("item_got1");
     if(!uvm_config_db#(virtual fifo_interface)::get(this, "", "vif", vif))
-      `uvm_fatal("Monitor1: ", "No vif is found!")
+      `uvm_fatal("Monitor1: ", "No vif is found!");
   endfunction
       
   virtual task run_phase(uvm_phase phase);
