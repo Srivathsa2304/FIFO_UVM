@@ -55,7 +55,7 @@ local_var=item_got2.o_rddata;
           end
       end
 
-    if(queue.size()>1020 && queue.size()<1024)
+    if(queue.size()>=1020 && queue.size()<1024)
       begin
         if(item_got2.o_alm_full=='b1)
           begin
