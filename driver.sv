@@ -11,7 +11,7 @@ class fifo_driver extends uvm_driver #(fifo_sequence_items);
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     if(!uvm_config_db#(virtual fifo_interface)::get(this, "", "vif", vif))
-      `uvm_fatal("Driver: ", "No vif is found!")
+      `uvm_fatal("Driver: ", "No vif is found!");
   endfunction
 
   virtual task run_phase(uvm_phase phase);
