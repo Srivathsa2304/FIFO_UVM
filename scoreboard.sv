@@ -13,6 +13,17 @@ class fifo_scoreboard extends uvm_scoreboard;
     super.build_phase(phase);
   endfunction
 
+  int queue[$];
+
+  function void write(input fifo_sequence_items item_got1);
+    bit [7:0] data;
+    if(item_got1.i_wren=='b1)
+      begin
+        if(queue.size()<1024)
+          begin
+        queue.push_back(item_got1.i_wrdata);
+            `uvm_info("Data write operation", $sformatf("i_wren: %0b i_rden: %0b i_wrdata: %0d o_full: %0b o_alm_full: %0b",item_got1.i_wren, item_got1.i_rden,item_got1.i_wrdata, item_got1.o_full,item_got1.o_alm_full), UVM_LOW);
+          endo_rddata)begin
   
   
 endclass
