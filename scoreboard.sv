@@ -39,7 +39,7 @@ class fifo_scoreboard extends uvm_scoreboard;
             begin
               $display("Almost empty condition : o_alm_empty=%0b",item_got2.o_alm_empty);
             end
-        `uvm_info("Data read operation", $sformatf("data: %0d o_rddata: %0d o_empty: %0b o_alm_empty: %0b", data, item_got2.o_rddata, item_got2.o_empty item_got2.o_alm_empty), UVM_LOW);
+          `uvm_info("Data read operation", $sformatf("data: %0d o_rddata: %0d o_empty: %0b o_alm_empty: %0b", data, item_got2.o_rddata, item_got2.o_empty ,item_got2.o_alm_empty), UVM_LOW);
           if(data == item_got2.o_rddata)
         $display("-----------Pass!-----------");
           else
