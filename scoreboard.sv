@@ -24,7 +24,7 @@ class fifo_scoreboard extends uvm_scoreboard;
             queue.push_back(item_got1.i_wren);
             if(queue.size()>1020 && queue.size()<1024)
               begin
-                $display("Almost full condition: o_alm_full=%0b",o_alm_full)
+                $display("Almost full condition: o_alm_full=%0b",item_got2.o_alm_full)
               end
             `uvm_info("Data write operation", $sformatf("i_wren: %0b i_rden: %0b i_wrdata: %0d o_full: %0b o_alm_full: %0b",item_got1.i_wren, item_got1.i_rden,item_got1.i_wrdata, item_got2.o_full,item_got2.o_alm_full), UVM_LOW);
           end
@@ -35,6 +35,10 @@ class fifo_scoreboard extends uvm_scoreboard;
       if(queue.size() >= 'd1)
         begin
          data = queue.pop_front();
+          if(queue.size()>0 && queue.size()<2)
+            begin
+              $display("Almost empty condition : o_alm_empty=%0b",item_got2.o_alm_empty)
+            end
         `uvm_info("Data read operation", $sformatf("data: %0d o_rddata: %0d o_empty: %0b o_alm_empty: %0b", data, item_got2.o_rddata, item_got2.o_empty item_got2.o_alm_empty), UVM_LOW);
           if(data == item_got2.o_rddata)
         $display("-----------Pass!-----------");
