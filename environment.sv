@@ -15,7 +15,7 @@ class fifo_environment extends uvm_env;
     super.build_phase(phase);
     f_agt1 = fifo_agent1::type_id::create("f_agt1", this);
     f_agt2 = fifo_agent2::type_id::create("f_agt2", this);
-    f_scb = fifo_scoreboard::type_id::create("f_scboard", this);
+    f_scb = fifo_scoreboard::type_id::create("f_scb", this);
   endfunction
   
   virtual function void connect_phase(uvm_phase phase);
